@@ -1,0 +1,11 @@
+orgapero_user:
+    resource: "@OrgaperoUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+homepage:
+      resource: "@AppBundle/Controller/"
+      type:     annotation
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

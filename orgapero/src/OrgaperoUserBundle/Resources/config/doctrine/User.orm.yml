@@ -1,0 +1,35 @@
+OrgaperoUserBundle\Entity\User:
+    type: entity
+    table: null
+    repositoryClass: OrgaperoUserBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '48'
+        firstname:
+            type: string
+            length: '48'
+        email:
+            type: string
+            length: '96'
+        password:
+            type: string
+            length: 255
+        address:
+            type: text
+            nullable: true
+        city:
+            type: string
+            length: '96'
+            nullable: true
+        country:
+            type: string
+            length: '96'
+            nullable: true
+    lifecycleCallbacks: {  }

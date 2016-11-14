@@ -1,0 +1,13 @@
+orgapero_user_login:
+    path:     /login
+    defaults: { _controller: OrgaperoUserBundle:User:login }
+
+orgapero_user_inscription:
+    path:     /register
+    defaults: { _controller: OrgaperoUserBundle:User:register}
+
+orgapero_user_profile:
+    path:     /profile
+    defaults: { _controller: OrgaperoUserBundle:User:profile }
+
+
