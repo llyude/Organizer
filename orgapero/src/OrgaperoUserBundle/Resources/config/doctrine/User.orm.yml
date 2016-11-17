@@ -9,6 +9,9 @@ OrgaperoUserBundle\Entity\User:
             generator:
                 strategy: AUTO
     fields:
+        username:
+            type: string
+            length: 48
         name:
             type: string
             length: '48'

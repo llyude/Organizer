@@ -34,16 +34,19 @@ class UserController extends Controller
         $user = new User();
         $form = $this->get('form.factory')->create(UserType::class, $user);
 
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $password = $this->get('security.password_encoder')
+                             ->encodePassword($user, $user->getPlainPassword());
+            $user->setPassword($password);
 
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
 
-        $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+            return $this->redirectToRoute('orgapero_user_profile', array('id' => $user->getId()));
+        }
 
-        return $this->redirectToRoute('orgapero_user_profile', array('id' => $user->getId()));
-    }
         return $this->render('OrgaperoUserBundle:User:register.html.twig', array(
                 'form' => $form->createView(),)
         );

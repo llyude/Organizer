@@ -1,12 +1,25 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/book/security.html
 security:
+    encoders:
+          Symfony\Component\Security\Core\User\User:
+              algorithm: bcrypt
+              cost: 12
+          OrgaperoUserBundle\Entity\User:
+              algorithm: bcrypt
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory:
-            memory: ~
-
+            memory:
+                users:
+                    starlord:
+                        password: $2y$12$a37ObU0sIFrkE4HC5wHqmO84uIBMywUWD64ON6dEyW5.5WZO.x48W
+                        roles: 'ROLE_ADMIN'
+        our_db_provider:
+            entity:
+                class: OrgaperoUserBundle:User
+                property: username
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
@@ -18,6 +31,10 @@ security:
             form_login:
                 login_path: orgapero_user_login
                 check_path: orgapero_user_login
+
+            pattern:    ^/
+            http_basic: ~
+            provider: our_db_provider
             # activate different ways to authenticate
 
             # http_basic: ~

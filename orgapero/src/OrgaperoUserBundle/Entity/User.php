@@ -1,12 +1,14 @@
 <?php
 
 namespace OrgaperoUserBundle\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @var int
@@ -17,6 +19,11 @@ class User
      * @var string
      */
     private $name;
+
+    /**
+     * @var string
+     */
+    private $username;
 
     /**
      * @var string
@@ -32,6 +39,10 @@ class User
      * @var string
      */
     private $password;
+    /**
+     * @var string
+     */
+    private $plainPassword;
 
     /**
      * @var string
@@ -48,11 +59,41 @@ class User
      */
     private $country;
 
+    /**
+     * @var boolean
+     */
+    private $isActive;
 
     /**
      * @var ArrayCollection User
      */
     protected $friends;
+
+    /**
+     * User constructor.
+     *
+     */
+    public function __construct()
+    {
+        $this->isActive = true;
+    }
+    /**
+     * @return boolean
+     */
+    public function isIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param boolean $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
+
 
     /**
      * Get id
@@ -161,6 +202,23 @@ class User
     }
 
     /**
+     * @return string
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string $password
+     */
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
+
+    /**
      * Set address
      *
      * @param string $address
@@ -248,6 +306,93 @@ class User
         $this->friends = $friends;
     }
 
-    
+
+    /**
+     * Returns the roles granted to the user.
+     *
+     * Alternatively, the roles might be stored on a ``roles`` property,
+     * and populated in any number of different ways when the user object
+     * is created.
+     *
+     * @return array (Role|array)[] The user roles
+     */
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    /**
+     * Returns the salt that was originally used to encode the password.
+     *
+     * This can return null if the password was not encoded using a salt.
+     *
+     * @return string|null The salt
+     */
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    /**
+     * Returns the username used to authenticate the user.
+     *
+     * @return string The username
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+
+    /**
+     * Removes sensitive data from the user.
+     *
+     * This is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object.
+     */
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * String representation of object
+     * @link http://php.net/manual/en/serializable.serialize.php
+     * @return string the string representation of the object or null
+     * @since 5.1.0
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password,
+            //$this->salt,
+        ));
+    }
+
+    /**
+     * Constructs the object
+     * @link http://php.net/manual/en/serializable.unserialize.php
+     * @param string $serialized <p>
+     * The string representation of the object.
+     * </p>
+     * @return void
+     * @since 5.1.0
+     */
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->email,
+            $this->password,
+            //$this->salt,
+            ) = unserialize($serialized);
+    }
 }
 
