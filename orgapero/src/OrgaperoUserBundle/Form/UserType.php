@@ -31,7 +31,8 @@ class UserType extends AbstractType
             ->add('address', TextType::class)
             ->add('city', TextType::class)
             ->add('country', TextType::class)
-            ->add('Register me', SubmitType::class);
+            ->add('Register me', SubmitType::class, array('attr' => array('class' => 'btn'))
+            );
     }
 
     /**

@@ -1,2 +1,74 @@
 {% extends 'base.html.twig' %}
-{% block title %} Wahooo {% endblock %}
+{% block title %} Account {% endblock %}
+{% block body %}
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <h1>My Profile</h1>
+                <div class="col m12 s10 offset-s1">
+                    <ul class="collection with-header">
+                        <li class="collection-item avatar green lighten-1"><h4 class="white-text">Hello {{ app.user.username }},</h4></li>
+                        <li class="collection-item avatar">
+                            <img src="{{ asset('assets/img/dandy.png') }}" alt="avatar" class="circle">
+                            <span class="title primary-text-color bold">My informations</span>
+                            <p><span class="primary-text-color bold">Address:</span> {{ app.user.address }}
+                                , {{ app.user.city }} {{ app.user.country }}<br>
+                                <span class="primary-text-color bold">Email:</span> {{ app.user.email }}
+                            </p>
+                            <div class="secondary-content">
+                                <a href="#!" title="Edit my informations"
+                                   class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">mode_edit</i></a>
+                                <a href="#!" title="Delete my account"
+                                   class="btn-floating btn-large waves-effect waves-light red"><i
+                                            class="material-icons">delete_forever</i></a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <ul id="friends" class="collection with-header">
+                        <li class="collection-item avatar green lighten-1">
+                            <h4 class="white-text">My Friends</h4>
+                            <div class="secondary-content">
+                                <a href="{{ path('orgapero_user_add_friend') }}" title="add a new friend"
+                                   class="btn-floating btn-large waves-effect waves-light white"><i class="large material-icons secondary-text-color">person_add</i></a>
+                            </div>
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="material-icons circle">android</i>
+                            <span class="title">Title</span>
+                            <p>First Line <br>
+                                Second Line
+                            </p>
+                            <a href="#!" title="Delete friend" class="secondary-content btn-floating btn-large waves-effect waves-light red"><i class="material-icons">delete_forever</i></a>
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="material-icons circle">folder</i>
+                            <span class="title">Title</span>
+                            <p>First Line <br>
+                                Second Line
+                            </p>
+                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="material-icons circle green">insert_chart</i>
+                            <span class="title">Title</span>
+                            <p>First Line <br>
+                                Second Line
+                            </p>
+                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="material-icons circle red">play_arrow</i>
+                            <span class="title">Title</span>
+                            <p>First Line <br>
+                                Second Line
+                            </p>
+                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

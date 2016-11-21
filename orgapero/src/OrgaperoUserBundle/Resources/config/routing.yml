@@ -10,4 +10,10 @@ orgapero_user_profile:
     path:     /profile
     defaults: { _controller: OrgaperoUserBundle:User:profile }
 
+orgapero_user_lost_password:
+    path:     /lost_password
+    defaults: { _controller: OrgaperoUserBundle:User:lostPassword }
 
+orgapero_user_add_friend:
+    path:     /add_friend
+    defaults: { _controller: OrgaperoUserBundle:User:addFriend }

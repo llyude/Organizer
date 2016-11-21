@@ -35,4 +35,22 @@ OrgaperoUserBundle\Entity\User:
             type: string
             length: '96'
             nullable: true
+
+    manyToMany:
+        friendsWithMe:
+            targetEntity: User
+            mappedBy: friends
+
+        friends:
+            targetEntity: User
+            inversedBy: friendsWithMe
+            joinTable:
+                name: friends
+                joinColumns:
+                    user_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    friend_user_id:
+                        referencedColumnName: id
+
     lifecycleCallbacks: {  }

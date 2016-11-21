@@ -12,9 +12,15 @@
 </head>
 <body>
     {% include 'nav.html.twig' %}
-    {% block body %}{% endblock %}
+    {% block body %}
+    <div class="main">
+        <div class="container">
+
+        </div>
+    </div>
+    {% endblock %}
     {% block javascripts %}
-        <script src="{{ asset('assets/js/vendors/jquery-1.11.3.min.js') }}"></script>
+        <script src="{{ asset('assets/js/vendors/jquery-3.1.1.min.js') }}"></script>
         <script src="{{ asset('assets/js/vendors/materialize.min.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
 

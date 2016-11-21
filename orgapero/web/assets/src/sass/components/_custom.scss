@@ -1,0 +1,36 @@
+.primary-text-color {
+  color: $primary-color !important;
+}
+
+.primary-color {
+  background: $primary-color !important;
+}
+
+
+.secondary-text-color{
+  color: $secondary-color !important;
+}
+
+.secondary-color{
+  background: $secondary-color !important;
+}
+
+.bold{
+  font-weight: 700;
+}
+
+
+// Liste avec avatar
+.collection.with-header .collection-item.custom-avatar .circle{
+  width: 60px;
+  height: 60px;
+}
+
+.collection.with-header .collection-item.custom-avatar i.circle{
+  font-size: 40px;
+  line-height: 60px;
+}
+
+.collection.with-header .collection-item.custom-avatar{
+  padding-left: 90px;
+}

@@ -64,6 +64,14 @@ class User implements UserInterface, \Serializable
      */
     private $isActive;
 
+
+
+    /**
+     * @var ArrayCollection User
+     */
+    private $friendsWithMe;
+
+
     /**
      * @var ArrayCollection User
      */
@@ -76,6 +84,8 @@ class User implements UserInterface, \Serializable
     public function __construct()
     {
         $this->isActive = true;
+        $this->friendsWithMe = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->myFriends = new \Doctrine\Common\Collections\ArrayCollection();
     }
     /**
      * @return boolean
@@ -305,6 +315,24 @@ class User implements UserInterface, \Serializable
     {
         $this->friends = $friends;
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getFriendsWithMe()
+    {
+        return $this->friendsWithMe;
+    }
+
+    /**
+     * @param ArrayCollection $friendsWithMe
+     */
+    public function setFriendsWithMe($friendsWithMe)
+    {
+        $this->friendsWithMe = $friendsWithMe;
+    }
+
+
 
 
     /**

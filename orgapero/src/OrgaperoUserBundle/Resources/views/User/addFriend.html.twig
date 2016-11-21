@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %}Add new friend{% endblock %}
+{% block body %}
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <h1>Find New friends</h1>
+                <div class="col m12 s10 offset-s1">
+                    {{ form(form) }}
+                </div>
+                {% if users is defined  and users is not empty %}
+                    <div class="col m12 s10 offset-s1">
+                        <ul class="collection with-header">
+                            {% for user in users %}
+                                <li class="collection-item avatar custom-avatar" data_user_id="">
+                                    <i class="material-icons circle">face</i>
+                                    <span class="title">Username: {{ user.username }}</span>
+                                    <p>Name: {{ user.name }} {{ user.firstname }}</p>
+
+                                    {{ form(addFriend) }}
+
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
