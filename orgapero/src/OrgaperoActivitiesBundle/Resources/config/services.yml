@@ -1,0 +1,4 @@
+services:
+#    orgapero_activities.example:
+#        class: OrgaperoActivitiesBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

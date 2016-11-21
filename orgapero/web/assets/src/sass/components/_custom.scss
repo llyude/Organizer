@@ -6,7 +6,6 @@
   background: $primary-color !important;
 }
 
-
 .secondary-text-color{
   color: $secondary-color !important;
 }
@@ -17,6 +16,10 @@
 
 .bold{
   font-weight: 700;
+}
+
+.header{
+
 }
 
 
@@ -33,4 +36,8 @@
 
 .collection.with-header .collection-item.custom-avatar{
   padding-left: 90px;
+}
+
+.promo i{
+  font-size: 7em;
 }

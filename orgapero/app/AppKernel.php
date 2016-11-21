@@ -17,6 +17,8 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
             new OrgaperoUserBundle\OrgaperoUserBundle(),
+            new OrgaperoContributionsBundle\OrgaperoContributionsBundle(),
+            new OrgaperoActivitiesBundle\OrgaperoActivitiesBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

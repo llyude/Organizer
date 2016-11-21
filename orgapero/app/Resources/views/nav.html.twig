@@ -1,6 +1,7 @@
 <nav>
     <div class="nav-wrapper">
-        <a href="{{ path('homepage') }}" class="brand-logo">Logo</a>
+        <a href="{{ path('homepage') }}" class="brand-logo"><img src="{{ asset('assets/img/templogo3.png') }}"
+                                                                 alt="logo">Rgapero</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
 
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
@@ -19,7 +20,8 @@
                         <div class="background">
                             <img src="{{ asset('assets/img/temp_bg.jpg') }}">
                         </div>
-                        <a href="{{ path('orgapero_user_profile') }}"><i class="large material-icons circle">face</i></a>
+                        <a href="{{ path('orgapero_user_profile') }}"><i
+                                    class="large material-icons circle">face</i></a>
                         <a href="#!name"><span class="white-text name">{{ app.user.username }}</span></a>
                         <a href="#!email"><span class="white-text email">{{ app.user.email }}</span></a>
                     </div>

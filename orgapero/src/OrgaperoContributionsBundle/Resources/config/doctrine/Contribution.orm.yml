@@ -1,0 +1,17 @@
+OrgaperoContributionsBundle\Entity\Contribution:
+    type: entity
+    table: null
+    repositoryClass: OrgaperoContributionsBundle\Repository\ContributionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '48'
+        quantity:
+            type: integer
+    lifecycleCallbacks: {  }

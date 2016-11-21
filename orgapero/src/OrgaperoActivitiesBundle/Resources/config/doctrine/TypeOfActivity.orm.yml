@@ -1,0 +1,30 @@
+OrgaperoActivitiesBundle\Entity\TypeOfActivity:
+    type: entity
+    table: null
+    repositoryClass: OrgaperoActivitiesBundle\Repository\TypeOfActivityRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '96'
+
+
+    oneToMany:
+            parent:
+                targetEntity: OrgaperoActivitiesBundle\Entity\TypeOfActivity
+                mappedBy: children
+    manyToOne:
+            children:
+                targetEntity: OrgaperoActivitiesBundle\Entity\TypeOfActivity
+                inversedBy: parent
+            listActivities:
+                targetEntity: OrgaperoActivitiesBundle\Entity\Activity
+                mappedBy:
+
+
+    lifecycleCallbacks: {  }

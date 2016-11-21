@@ -1,0 +1,3 @@
+orgapero_activities_homepage:
+    path:     /activities
+    defaults: { _controller: OrgaperoActivitiesBundle:Default:index }

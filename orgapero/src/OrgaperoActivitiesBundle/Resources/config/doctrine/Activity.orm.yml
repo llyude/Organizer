@@ -1,0 +1,11 @@
+OrgaperoActivitiesBundle\Entity\Activity:
+    type: entity
+    table: null
+    repositoryClass: OrgaperoActivitiesBundle\Repository\ActivityRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    lifecycleCallbacks: {  }

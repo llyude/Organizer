@@ -1,0 +1,3 @@
+orgapero_contributions_homepage:
+    path:     /contributions
+    defaults: { _controller: OrgaperoContributionsBundle:Default:index }
