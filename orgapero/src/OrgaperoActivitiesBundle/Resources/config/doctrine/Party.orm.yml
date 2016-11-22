@@ -1,0 +1,24 @@
+OrgaperoActivitiesBundle\Entity\Party:
+    type: entity
+    table: null
+    repositoryClass: OrgaperoActivitiesBundle\Repository\PartyRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        date:
+            type: datetime
+        location:
+            type: text
+    manyToMany:
+        listActivities:
+            targetEntity: Activity
+            mappedBy: party
+
+    lifecycleCallbacks: {  }

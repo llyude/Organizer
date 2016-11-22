@@ -1,6 +1,7 @@
 <?php
 
 namespace OrgaperoContributionsBundle\Entity;
+use OrgaperoActivitiesBundle\Entity\Activity;
 
 /**
  * Contribution
@@ -22,6 +23,10 @@ class Contribution
      */
     private $quantity;
 
+    /**
+     * @var Activity
+     */
+    private $activity;
 
     /**
      * Get id
@@ -79,6 +84,22 @@ class Contribution
     public function getQuantity()
     {
         return $this->quantity;
+    }
+
+    /**
+     * @return Activity
+     */
+    public function getActivity()
+    {
+        return $this->activity;
+    }
+
+    /**
+     * @param Activity $activity
+     */
+    public function setActivity($activity)
+    {
+        $this->activity = $activity;
     }
 }
 

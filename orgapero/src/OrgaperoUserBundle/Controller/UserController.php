@@ -3,6 +3,7 @@
 namespace OrgaperoUserBundle\Controller;
 
 use OrgaperoUserBundle\Entity\User;
+use OrgaperoUserBundle\Form\EditProfileType;
 use OrgaperoUserBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -35,7 +36,7 @@ class UserController extends Controller
         ));
     }
 
-    public function lostPasswordAction()
+    public function lostPasswordAction(Request $request)
     {
 
     }
@@ -51,6 +52,7 @@ class UserController extends Controller
         $form = $this->get('form.factory')->create(UserType::class, $user);
 
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $password = $this->get('security.password_encoder')
                 ->encodePassword($user, $user->getPlainPassword());
@@ -89,12 +91,33 @@ class UserController extends Controller
     }
 
 
-    public function edit_profileAction()
+    public function edit_profileAction(Request $request)
     {
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
         }
 
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $form = $this->get('form.factory')->create(EditProfileType::class, $user);
+
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $password = $this->get('security.password_encoder')
+                ->encodePassword($user, $user->getPlainPassword());
+            $user->setPassword($password);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('orgapero_user_profile', array('id' => $user->getId()));
+        }
+
+        return $this->render('OrgaperoUserBundle:User:edit_profile.html.twig',
+            array('form' => $form->createView(),)
+        );
 
     }
     

@@ -14,4 +14,8 @@ OrgaperoContributionsBundle\Entity\Contribution:
             length: '48'
         quantity:
             type: integer
+    manyToMany:
+        activity:
+            targetEntity: OrgaperoActivitiesBundle\Entity\Activity
+            mappedBy: listContributions
     lifecycleCallbacks: {  }

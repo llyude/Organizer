@@ -1,6 +1,7 @@
 <?php
 
 namespace OrgaperoActivitiesBundle\Entity;
+use OrgaperoContributionsBundle\Entity\Contribution;
 
 /**
  * Activity
@@ -12,6 +13,20 @@ class Activity
      */
     private $id;
 
+    /**
+     * @var Party
+     */
+    private $party;
+
+    /**
+     * @var TypeOfActivity
+     */
+    private $typeOfActivity;
+
+    /**
+     * @var Contribution
+     */
+    private $listContributions;
 
     /**
      * Get id
@@ -22,5 +37,55 @@ class Activity
     {
         return $this->id;
     }
+
+    /**
+     * @return Party
+     */
+    public function getParty()
+    {
+        return $this->party;
+    }
+
+    /**
+     * @param Party $party
+     */
+    public function setParty($party)
+    {
+        $this->party = $party;
+    }
+
+    /**
+     * @return TypeOfActivity
+     */
+    public function getTypeOfActivity()
+    {
+        return $this->typeOfActivity;
+    }
+
+    /**
+     * @param TypeOfActivity $typeOfActivity
+     */
+    public function setTypeOfActivity($typeOfActivity)
+    {
+        $this->typeOfActivity = $typeOfActivity;
+    }
+
+    /**
+     * @return Contribution
+     */
+    public function getListContributions()
+    {
+        return $this->listContributions;
+    }
+
+    /**
+     * @param Contribution $listContributions
+     */
+    public function setListContributions($listContributions)
+    {
+        $this->listContributions = $listContributions;
+    }
+
+    
 }
 

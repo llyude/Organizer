@@ -17,7 +17,7 @@
                                 <span class="primary-text-color bold">Email:</span> {{ app.user.email }}
                             </p>
                             <div class="secondary-content">
-                                <a href="#!" title="Edit my informations"
+                                <a href="{{ path('orgapero_user_edit_profile') }}" title="Edit my informations"
                                    class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">mode_edit</i></a>
                                 <a href="#!" title="Delete my account"
                                    class="btn-floating btn-large waves-effect waves-light red"><i
@@ -38,7 +38,6 @@
                                             class="large material-icons secondary-text-color">person_add</i></a>
                             </div>
                         </li>
-                        {{ dump(app.user) }}
                         {% if app.user.friendsWithMe is not empty %}
                             {% for friend in app.user.friends %}
                                 <li class="collection-item avatar custom-avatar">
