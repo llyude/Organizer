@@ -333,7 +333,25 @@ class User implements UserInterface, \Serializable
     }
 
 
+    public function addFriend(User $user)
+    {
+        if (!$this->friends->contains($user) && !$this->friendsWithMe->contains($user)) {
+            $this->friends->add($user);
+            $this->friendsWithMe->add($user);
+            $user->addFriend($this);
+        }
 
+    }
+
+
+    public function removeFriend(User $user)
+    {
+        if ($this->friends->contains($user) && $this->friendsWithMe->contains($user)) {
+            $this->friends->removeElement($user);
+            $this->friendsWithMe->removeElement($user);
+            $user->removeFriend($this);
+        }
+    }
 
     /**
      * Returns the roles granted to the user.

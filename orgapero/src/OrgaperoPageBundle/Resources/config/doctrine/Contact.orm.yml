@@ -1,0 +1,23 @@
+OrgaperoPageBundle\Entity\Contact:
+    type: entity
+    table: null
+    repositoryClass: OrgaperoPageBundle\Repository\ContactRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '48'
+        email:
+            type: string
+            length: 255
+        subject:
+            type: string
+            length: '120'
+        message:
+            type: text
+    lifecycleCallbacks: {  }

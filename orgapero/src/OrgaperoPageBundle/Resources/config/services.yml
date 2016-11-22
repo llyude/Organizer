@@ -1,0 +1,4 @@
+services:
+#    orgapero_page.example:
+#        class: OrgaperoPageBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

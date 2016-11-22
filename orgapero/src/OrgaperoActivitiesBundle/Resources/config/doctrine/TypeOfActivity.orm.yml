@@ -22,9 +22,6 @@ OrgaperoActivitiesBundle\Entity\TypeOfActivity:
             children:
                 targetEntity: OrgaperoActivitiesBundle\Entity\TypeOfActivity
                 inversedBy: parent
-            listActivities:
-                targetEntity: OrgaperoActivitiesBundle\Entity\Activity
-                mappedBy:
 
 
     lifecycleCallbacks: {  }

@@ -7,7 +7,8 @@
                 <h1>My Profile</h1>
                 <div class="col m12 s10 offset-s1">
                     <ul class="collection with-header">
-                        <li class="collection-item avatar green lighten-1"><h4 class="white-text">Hello {{ app.user.username }},</h4></li>
+                        <li class="collection-item avatar green lighten-1"><h4 class="white-text">
+                                Hello {{ app.user.username }},</h4></li>
                         <li class="collection-item avatar">
                             <img src="{{ asset('assets/img/dandy.png') }}" alt="avatar" class="circle">
                             <span class="title primary-text-color bold">My informations</span>
@@ -24,17 +25,36 @@
                             </div>
                         </li>
                     </ul>
-                    {% if app.user.friends is not empty %}
-                        <ul id="friends" class="collection with-header">
-                            <li class="collection-item avatar green lighten-1">
-                                <h4 class="white-text">My Friends</h4>
-                                <div class="secondary-content">
-                                    <a href="{{ path('orgapero_user_add_friend') }}" title="add a new friend"
-                                       class="btn-floating btn-large waves-effect waves-light white"><i class="large material-icons secondary-text-color">person_add</i></a>
-                                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m12 s10 offset-s1">
+                    <ul id="friends" class="collection with-header">
+                        <li class="collection-item avatar green lighten-1">
+                            <h4 class="white-text">My Friends</h4>
+                            <div class="secondary-content">
+                                <a href="{{ path('orgapero_user_search_friend') }}" title="add a new friend"
+                                   class="btn-floating btn-large waves-effect waves-light white"><i
+                                            class="large material-icons secondary-text-color">person_add</i></a>
+                            </div>
+                        </li>
+                        {{ dump(app.user) }}
+                        {% if app.user.friendsWithMe is not empty %}
+                            {% for friend in app.user.friends %}
+                                <li class="collection-item avatar custom-avatar">
+                                    <i class="material-icons circle">face</i>
+                                    <span class="title">{{ friend.name }}</span>
+                                    <a href="{{ path('orgapero_user_delete_friend', {'id': friend.id }) }}" title="Delete my friend"
+                                       class="secondary-content btn-floating btn-large waves-effect waves-light "><i
+                                                class="material-icons">delete_forever</i></a>
+                                </li>
+                            {% endfor %}
+                        {% else %}
+                            <li class="collection-item">
+                                <p class="title">You don't have any friends, let's add some friends !</p>
                             </li>
-                        </ul>
-                    {% endif %}
+                        {% endif %}
+                    </ul>
                 </div>
             </div>
         </div>

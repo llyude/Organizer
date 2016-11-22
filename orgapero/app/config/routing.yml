@@ -3,6 +3,10 @@ homepage:
       resource: "@AppBundle/Controller/"
       type:     annotation
 
+orgapero_page:
+    resource: "@OrgaperoPageBundle/Resources/config/routing.yml"
+    prefix:   /
+
 orgapero_activities:
     resource: "@OrgaperoActivitiesBundle/Resources/config/routing.yml"
     prefix:   /

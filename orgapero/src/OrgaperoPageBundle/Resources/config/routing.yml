@@ -1,0 +1,11 @@
+orgapero_page_homepage:
+    path:     /page
+    defaults: { _controller: OrgaperoPageBundle:Default:index }
+
+orgapero_page_legals:
+    path: /legals
+    defaults: { _controller: OrgaperoPageBundle:Default:legals }
+
+orgapero_page_contact:
+    path: /contact
+    defaults: { _controller: OrgaperoPageBundle:Default:contact }

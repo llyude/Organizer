@@ -10,10 +10,24 @@ orgapero_user_profile:
     path:     /profile
     defaults: { _controller: OrgaperoUserBundle:User:profile }
 
+orgapero_user_edit_profile:
+    path:     /edit_profile
+    defaults: { _controller: OrgaperoUserBundle:User:edit_profile }
+
 orgapero_user_lost_password:
     path:     /lost_password
     defaults: { _controller: OrgaperoUserBundle:User:lostPassword }
 
+orgapero_user_search_friend:
+    path:     /searchFriend
+    defaults: { _controller: OrgaperoUserBundle:User:searchFriend }
+
 orgapero_user_add_friend:
-    path:     /add_friend
+    path:     /add_friend/{id}
+    methods:  [GET, HEAD]
     defaults: { _controller: OrgaperoUserBundle:User:addFriend }
+
+orgapero_user_delete_friend:
+    path:     /delete_friend/{id}
+    methods:  [GET, HEAD]
+    defaults: { _controller: OrgaperoUserBundle:User:deleteFriend }

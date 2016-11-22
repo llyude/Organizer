@@ -6,7 +6,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,7 +21,7 @@ class UserType extends AbstractType
             ->add('username', TextType::class)
             ->add('name', TextType::class)
             ->add('firstname', TextType::class)
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, array('attr' => array('class' => 'validate')))
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options' => array('label' => 'Password'),
@@ -30,9 +29,7 @@ class UserType extends AbstractType
             ))
             ->add('address', TextType::class)
             ->add('city', TextType::class)
-            ->add('country', TextType::class)
-            ->add('Register me', SubmitType::class, array('attr' => array('class' => 'btn'))
-            );
+            ->add('country', TextType::class);
     }
 
     /**

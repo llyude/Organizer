@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new OrgaperoUserBundle\OrgaperoUserBundle(),
             new OrgaperoContributionsBundle\OrgaperoContributionsBundle(),
             new OrgaperoActivitiesBundle\OrgaperoActivitiesBundle(),
+            new OrgaperoPageBundle\OrgaperoPageBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
