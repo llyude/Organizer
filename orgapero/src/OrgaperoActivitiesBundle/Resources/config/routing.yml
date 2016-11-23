@@ -1,3 +1,11 @@
 orgapero_activities_homepage:
     path:     /activities
     defaults: { _controller: OrgaperoActivitiesBundle:Default:index }
+
+orgapero_new_party:
+    path:    /new_party
+    defaults: { _controller: OrgaperoActivitiesBundle:Party:newParty }
+
+orgapero_new_type_of_activty:
+    path:   /new_type_of_activity
+    defaults: { _controller: OrgaperoActivitiesBundle:TypeOfActivity:newTypeOfActivity }

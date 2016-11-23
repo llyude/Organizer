@@ -13,15 +13,12 @@ OrgaperoActivitiesBundle\Entity\TypeOfActivity:
             type: string
             length: '96'
 
-
-    oneToMany:
+    manyToOne:
             parent:
                 targetEntity: OrgaperoActivitiesBundle\Entity\TypeOfActivity
-                mappedBy: children
-    manyToOne:
+                inversedBy: children
+    oneToMany:
             children:
                 targetEntity: OrgaperoActivitiesBundle\Entity\TypeOfActivity
-                inversedBy: parent
-
-
+                mappedBy: parent
     lifecycleCallbacks: {  }

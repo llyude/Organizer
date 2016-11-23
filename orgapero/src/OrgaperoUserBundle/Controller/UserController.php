@@ -2,6 +2,7 @@
 
 namespace OrgaperoUserBundle\Controller;
 
+use OrgaperoUserBundle\Entity\ChangePassword;
 use OrgaperoUserBundle\Entity\User;
 use OrgaperoUserBundle\Form\EditProfileType;
 use OrgaperoUserBundle\Form\UserType;
@@ -39,6 +40,18 @@ class UserController extends Controller
     public function lostPasswordAction(Request $request)
     {
 
+
+
+    }
+    public function changePasswordAction(Request $request)
+    {
+        $changePassword = new ChangePassword();
+        /*$form = $this->get('form.factory')->create(\ChangePasswordType::class, $changePassword);
+        $form->handleRequest($request);
+         */
+        return $this->render('OrgaperoUserBundle:User:changePassword.html.twig', array(
+                )
+        );
     }
 
     /**
@@ -62,14 +75,13 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('orgapero_user_profile', array('id' => $user->getId()));
+            return $this->redirectToRoute('orgapero_user_profile');
         }
 
         return $this->render('OrgaperoUserBundle:User:register.html.twig', array(
                 'form' => $form->createView(),)
         );
     }
-
 
     /**
      * @param OptionsResolver $resolver
@@ -81,7 +93,7 @@ class UserController extends Controller
         ));
     }
 
-    public function profileAction(UserInterface $user = null)
+    public function profileAction()
     {
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
@@ -90,8 +102,7 @@ class UserController extends Controller
         return $this->render('OrgaperoUserBundle:User:profile.html.twig');
     }
 
-
-    public function edit_profileAction(Request $request)
+    public function editProfileAction(Request $request)
     {
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             throw $this->createAccessDeniedException();
@@ -99,8 +110,6 @@ class UserController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $form = $this->get('form.factory')->create(EditProfileType::class, $user);
-
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -120,7 +129,7 @@ class UserController extends Controller
         );
 
     }
-    
+
     /**
      * @param Request $request
      * @return Response
@@ -156,7 +165,6 @@ class UserController extends Controller
         return $this->render('OrgaperoUserBundle:User:searchFriend.html.twig', array(
             'form' => $form->createView()));
     }
-
 
     /**
      * @param integer $id

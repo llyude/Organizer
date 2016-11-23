@@ -12,7 +12,11 @@ orgapero_user_profile:
 
 orgapero_user_edit_profile:
     path:     /edit_profile
-    defaults: { _controller: OrgaperoUserBundle:User:edit_profile }
+    defaults: { _controller: OrgaperoUserBundle:User:editProfile }
+
+orgapero_user_change_password:
+    path:     /change_password
+    defaults: { _controller: OrgaperoUserBundle:User:changePassword }
 
 orgapero_user_lost_password:
     path:     /lost_password

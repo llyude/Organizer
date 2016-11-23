@@ -63,9 +63,7 @@ class User implements UserInterface, \Serializable
      * @var boolean
      */
     private $isActive;
-
-
-
+    
     /**
      * @var ArrayCollection User
      */

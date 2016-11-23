@@ -61,5 +61,38 @@ class TypeOfActivity
     {
         return $this->name;
     }
+
+    /**
+     * @return string
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param string $parent
+     */
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * @param ArrayCollection $children
+     */
+    public function setChildren($children)
+    {
+        $this->children = $children;
+    }
+    
 }
 
