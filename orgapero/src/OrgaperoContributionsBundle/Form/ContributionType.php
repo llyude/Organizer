@@ -1,15 +1,14 @@
 <?php
 
-namespace OrgaperoActivitiesBundle\Form;
+namespace OrgaperoContributionsBundle\Form;
 
-use OrgaperoActivitiesBundle\Entity\TypeOfActivity;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TypeOfActivityType extends AbstractType
+class ContributionType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -18,9 +17,7 @@ class TypeOfActivityType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('parent', ChoiceType::class, array(
-
-                ));
+            ->add('quantity', IntegerType::class);
     }
 
     /**
@@ -29,7 +26,7 @@ class TypeOfActivityType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OrgaperoActivitiesBundle\Entity\TypeOfActivity'
+            'data_class' => 'OrgaperoContributionsBundle\Entity\Contribution'
         ));
     }
 
@@ -38,7 +35,7 @@ class TypeOfActivityType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'orgaperoactivitiesbundle_typeofactivity';
+        return 'orgaperocontributionsbundle_contribution';
     }
 
 

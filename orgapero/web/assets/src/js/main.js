@@ -7,5 +7,24 @@ $(document).ready(function () {
         }
     );
 
-    //$('.modal-trigger').leanModal();
+  $('.partyDatepicker').pickadate({
+    selectMonths: true,
+    selectYears: 3
+  });
+
+  /*$('.partyTimepicker').pickatime({
+    interval: 30,
+    format: 'h:i A',
+    min: [7,30],
+    max: [23,59],
+    closeOnSelect: true,
+    closeOnClear: true,
+    onClose: function() {
+      console.log('Closed now');
+    },
+  });*/
+
+  $(document).ready(function() {
+    $('select').material_select();
+  });
 });
