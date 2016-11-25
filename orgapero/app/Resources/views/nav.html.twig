@@ -5,13 +5,13 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down">
 
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                <li><a href="{{ path('orgapero_user_profile') }}">My account</a></li>
-                <li><a href="{{ path('logout') }}"><i class="material-icons">filter_drama</i></a></li>
+                <li><a href="{{ path('orgapero_user_profile') }}" title="my account"><i class="material-icons" title="create a event">assignment_ind</i></a></li>
+              <li><a href="{{ path('orgapero_new_party') }}"><i class="material-icons" title="create a event">event</i></a></li>
+              <li><a href="{{ path('logout') }}"><i class="material-icons" title="logout">clear</i></a></li>
             {% else %}
-                <li><a href="{{ path('orgapero_user_login') }}">Connection</a></li>
-                <li><a href="{{ path('orgapero_user_inscription') }}">Inscription</a></li>
+                <li><a href="{{ path('orgapero_user_login') }}" title="login">Connection</a></li>
+                <li><a href="{{ path('orgapero_user_inscription') }}" title="register">Inscription</a></li>
             {% endif %}
-
         </ul>
         <ul id="slide-out" class="side-nav">
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}

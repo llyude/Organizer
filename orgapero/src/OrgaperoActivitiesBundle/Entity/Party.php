@@ -27,6 +27,11 @@ class Party
     /**
      * @var string
      */
+    private $time;
+
+    /**
+     * @var string
+     */
     private $location;
 
     /**
@@ -174,6 +179,23 @@ class Party
     {
         $this->listActivities = $listActivities;
     }
+
+    /**
+     * @return string
+     */
+    public function getTime()
+    {
+        return $this->time;
+    }
+
+    /**
+     * @param string $time
+     */
+    public function setTime($time)
+    {
+        $this->time = $time;
+    }
+
 
 
 }

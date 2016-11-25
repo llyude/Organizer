@@ -11,13 +11,10 @@
         <div class="card-content">
           {{ form_start(form) }}
           {{ form_row(form.name) }}
+          {{ form_row(form.time) }}
           {{ form_row(form.date) }}
           {{ form_row(form.location) }}
           {{ form_row(form.listActivities) }}
-          <div class="picktime-wrapper">
-            <label for="partytime">Time</label>
-            <input type="text" class="partyTimepicker" name="partytime" id="partytime" placeholder="ex: 20:00">
-          </div>
           <input type="submit" value="Create my event"
                  class="btn"/>
           {{ form_end(form) }}
