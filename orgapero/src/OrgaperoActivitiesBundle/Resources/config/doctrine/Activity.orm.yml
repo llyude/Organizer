@@ -32,4 +32,8 @@ OrgaperoActivitiesBundle\Entity\Activity:
                 inverseJoinColumns:
                     activity_id:
                         referencedColumnName: id
+    manyToOne:
+        typeOfActivity:
+            targetEntity: OrgaperoActivitiesBundle\Entity\TypeOfActivity
+
     lifecycleCallbacks: {  }

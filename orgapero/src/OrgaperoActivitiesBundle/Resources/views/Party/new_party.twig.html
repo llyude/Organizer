@@ -10,11 +10,7 @@
         </div>
         <div class="card-content">
           {{ form_start(form) }}
-          {{ form_row(form.name) }}
-          {{ form_row(form.time) }}
-          {{ form_row(form.date) }}
-          {{ form_row(form.location) }}
-          {{ form_row(form.listActivities) }}
+          {{ form_widget(form) }}
           <input type="submit" value="Create my event"
                  class="btn"/>
           {{ form_end(form) }}

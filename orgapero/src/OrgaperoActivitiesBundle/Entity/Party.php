@@ -1,6 +1,7 @@
 <?php
 
 namespace OrgaperoActivitiesBundle\Entity;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use OrgaperoUserBundle\Entity\User;
 
@@ -40,7 +41,7 @@ class Party
     private $organizer;
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection User
      */
     private $listParticipants;
 
@@ -49,6 +50,15 @@ class Party
      */
     private $listActivities;
 
+    /**
+     * Party constructor.
+     * @param ArrayCollection $listParticipants
+     * @param ArrayCollection $listActivities
+     */
+    public function __construct()
+    {
+        $this->listParticipants = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -197,6 +207,32 @@ class Party
     }
 
 
+    public function addActivities(TypeOfActivity $typeOfActivity)
+    {
+
+    }
+
+    public function addParticipants(ArrayCollection $users)
+    {
+        foreach ($users->toArray() as $user) {
+            if (!$this->listParticipants->contains($user)) {
+                $this->listParticipants->add($user);
+                $user->addInvitation($this);
+            }
+        }
+        return $this;
+    }
+
+    public function removeParticipants(ArrayCollection $users)
+    {
+        foreach ($users->toArray() as $user) {
+            if ($this->listParticipants->contains($user)) {
+                $this->listParticipants->removeElement($user);
+                $user->removeInvitation($this);
+            }
+        }
+        return $this;
+    }
 
 }
 

@@ -2,17 +2,22 @@
 {% block title %} New Party {% endblock %}
 {% block body %}
 <div class="main">
-  <div class="container">
-    <div class="row">
-      <div class="card col l10 offset-l1 s10 offset-s1">
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Add new Activity"
-               class="btn" />
-        {{ form_end(form) }}
-      </div>
+    <div class="container">
+        <div class="row">
+            <div class="card col l10 offset-l1 s10 offset-s1">
+                <div class="card-content">
+                    <div class="card-title">
+                        <h2>Ajouter une Activité</h2>
+                    </div>
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <input type="submit" value="Add new Activity"
+                           class="btn"/>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 {% endblock %}

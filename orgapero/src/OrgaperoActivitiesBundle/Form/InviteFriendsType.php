@@ -17,14 +17,12 @@ class InviteFriendsType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('time', TextType::class, array('attr' => array('placeholder' => 'ex: 20:00')))
-            ->add('date', TextType::class, array('attr' => array('class' => 'partyDatepicker')))
-            ->add('location', TextType::class)
+
             ->add('listActivities', EntityType::class, array(
                 'class' => 'OrgaperoActivitiesBundle:Activity',
-                /*'choice_label' => function($activity){
+                'choice_label' => function($activity){
                     return $activity->getTypeOfActivity();
-                },*/
+                },
                 'attr' => array('class', 'input-field')
             ));
     }

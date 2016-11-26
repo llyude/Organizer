@@ -20,5 +20,8 @@ OrgaperoActivitiesBundle\Entity\Party:
         listActivities:
             targetEntity: Activity
             mappedBy: party
+        listParticipants:
+            targetEntity: OrgaperoUserBundle\Entity\User
+            mappedBy: invitations
 
     lifecycleCallbacks: {  }

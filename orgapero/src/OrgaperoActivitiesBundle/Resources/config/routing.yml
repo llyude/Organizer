@@ -6,10 +6,6 @@ orgapero_new_party:
     path:    /new_party
     defaults: { _controller: OrgaperoActivitiesBundle:Party:newParty }
 
-orgapero_invite_friends:
-    path:    /invite_friends/{party}
-    defaults: { _controller: OrgaperoActivitiesBundle:Party:inviteFriends }
-
 orgapero_new_type_of_activty:
     path:   /new_type_of_activity
     defaults: { _controller: OrgaperoActivitiesBundle:TypeOfActivity:newTypeOfActivity }

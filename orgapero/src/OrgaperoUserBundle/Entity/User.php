@@ -3,6 +3,7 @@
 namespace OrgaperoUserBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use OrgaperoActivitiesBundle\Entity\Party;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -63,17 +64,22 @@ class User implements UserInterface, \Serializable
      * @var boolean
      */
     private $isActive;
-    
+
     /**
      * @var ArrayCollection User
      */
-    private $friendsWithMe;
+    protected $friendsWithMe;
 
 
     /**
      * @var ArrayCollection User
      */
     protected $friends;
+
+    /**
+     * @var ArrayCollection Party
+     */
+    public $invitations;
 
     /**
      * User constructor.
@@ -84,6 +90,7 @@ class User implements UserInterface, \Serializable
         $this->isActive = true;
         $this->friendsWithMe = new \Doctrine\Common\Collections\ArrayCollection();
         $this->myFriends = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->invitations = new \Doctrine\Common\Collections\ArrayCollection();
     }
     /**
      * @return boolean
@@ -331,6 +338,9 @@ class User implements UserInterface, \Serializable
     }
 
 
+    /**
+     * @param User $user
+     */
     public function addFriend(User $user)
     {
         if (!$this->friends->contains($user) && !$this->friendsWithMe->contains($user)) {
@@ -338,10 +348,11 @@ class User implements UserInterface, \Serializable
             $this->friendsWithMe->add($user);
             $user->addFriend($this);
         }
-
     }
 
-
+    /**
+     * @param User $user
+     */
     public function removeFriend(User $user)
     {
         if ($this->friends->contains($user) && $this->friendsWithMe->contains($user)) {
@@ -349,6 +360,40 @@ class User implements UserInterface, \Serializable
             $this->friendsWithMe->removeElement($user);
             $user->removeFriend($this);
         }
+    }
+
+    /**
+     * @param Party $party
+     */
+    public function addInvitation(Party $party){
+        if(!$this->invitations->contains($party)){
+            $this->invitations->add($party);
+        }
+    }
+
+    /**
+     * @param Party $party
+     */
+    public function removeInvitation(Party $party){
+        if($this->invitations->contains($party)){
+            $this->invitations->removeElement($party);
+        }
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getInvitations()
+    {
+        return $this->invitations;
+    }
+
+    /**
+     * @param ArrayCollection $invitations
+     */
+    public function setInvitations($invitations)
+    {
+        $this->invitations = $invitations;
     }
 
     /**

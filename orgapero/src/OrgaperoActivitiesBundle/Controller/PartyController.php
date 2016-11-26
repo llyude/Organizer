@@ -3,14 +3,19 @@
 namespace OrgaperoActivitiesBundle\Controller;
 
 use OrgaperoActivitiesBundle\Entity\Party;
-use OrgaperoActivitiesBundle\Form\PartyType;
+use OrgaperoActivitiesBundle\Form\InviteFriendsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use OrgaperoActivitiesBundle\Form\PartyType;
 
 class PartyController extends Controller
 {
     public function newPartyAction(Request $request)
     {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
         $party = new Party();
         $partyForm = $this->createForm(PartyType::class, $party);
 
@@ -22,32 +27,18 @@ class PartyController extends Controller
             $datetime = $date . $time;
             $date = \DateTime::createFromFormat('d F, Y H:i', $datetime);
             $party->setDate($date);
+            $users = $partyForm->get('listParticipants')->getData();
+
+            //$party->addParticipants($users, $party);
+            
+            $party->addParticipants($users);
+            dump($users);
             $em = $this->getDoctrine()->getManager();
             $em->persist($party);
             $em->flush();
 
-            // redirect to a add friend to the party with parameters
-            return $this->redirectToRoute('orgapero_invite_friends', array('party' => $party));
         }
         return $this->render('OrgaperoActivitiesBundle:Party:new_party.twig.html', array('form' => $partyForm->createView(),)
-        );
-    }
-
-
-    public function inviteFriendsAction(Request $request, Party $party)
-    {
-
-        $inviteFriendsForm = $this->createForm(InviteFriendsType::class, $party);
-        $inviteFriendsForm->handleRequest($request);
-
-        if ($inviteFriendsForm->isSubmitted() && $inviteFriendsForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($party);
-            $em->flush();
-
-        }
-
-        return $this->render('OrgaperoActivitiesBundle:Party:new_party.twig.html', array('form' => $inviteFriendsForm->createView(),)
         );
     }
 

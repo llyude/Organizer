@@ -3,6 +3,7 @@
 namespace OrgaperoActivitiesBundle\Form;
 
 use OrgaperoActivitiesBundle\Entity\TypeOfActivity;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,8 +19,10 @@ class TypeOfActivityType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('parent', ChoiceType::class, array(
-
+            ->add('parent', EntityType::class, array(
+                'class' => 'OrgaperoActivitiesBundle:TypeOfActivity',
+                'choice_label' => 'name',
+                'preferred_choices' => array('Aucun')
                 ));
     }
 

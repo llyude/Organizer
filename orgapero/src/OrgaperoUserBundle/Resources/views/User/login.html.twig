@@ -9,6 +9,9 @@
         {% endif %}
         <div class="card col l4 offset-l4 s10 offset-s1">
             <div class="card-content">
+                <div class="card-title">
+                    Connection
+                </div>
                 <form action="{{ path('orgapero_user_login') }}" method="post">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="_username" value="{{ last_username }}" required/>
@@ -19,14 +22,12 @@
                     <input type="hidden" name="_csrf_token"
                            value="{{ csrf_token('authenticate') }}"
                     >
-                    {#
-                    <input type="hidden" name="_target_path" value="/profile" />
-                    #}
                     <button class="btn" type="submit">login</button>
                 </form>
             </div>
-            <div class="card-action">
+            <div class="card-action center">
                 <a href="#">password lost ?</a>
+                <a href="{{ path('orgapero_user_inscription') }}">Create an account</a>
             </div>
         </div>
     </div>

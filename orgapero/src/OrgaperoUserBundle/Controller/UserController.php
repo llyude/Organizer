@@ -180,9 +180,7 @@ class UserController extends Controller
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $user->addFriend($friend[0]);
         $em->flush();
-        return $this->render('OrgaperoUserBundle:User:addFriend.html.twig', array(
-            'test' => $friend));
-        //return $this->redirectToRoute('orgapero_user_search_friend');
+        return $this->redirectToRoute('orgapero_user_search_friend');
     }
 
     /**

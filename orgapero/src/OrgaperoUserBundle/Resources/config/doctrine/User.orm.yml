@@ -53,4 +53,16 @@ OrgaperoUserBundle\Entity\User:
                     friend_user_id:
                         referencedColumnName: id
 
+        invitations:
+            targetEntity: OrgaperoActivitiesBundle\Entity\Party
+            inversedBy: listParticipants
+            joinTable:
+                name: user_party
+                joinColumns:
+                    user_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    party_id:
+                        referencedColumnName: id
+
     lifecycleCallbacks: {  }
