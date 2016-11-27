@@ -29,6 +29,17 @@ class Activity
     private $listContributions;
 
     /**
+     * Activity constructor.
+     * @param TypeOfActivity $typeOfActivity
+     * @param Party $party
+     */
+    public function __construct(TypeOfActivity $typeOfActivity)
+    {
+        $this->typeOfActivity = $typeOfActivity;
+    }
+
+
+    /**
      * Get id
      *
      * @return int
@@ -85,7 +96,6 @@ class Activity
     {
         $this->listContributions = $listContributions;
     }
-
     
 }
 

@@ -8,19 +8,9 @@ OrgaperoActivitiesBundle\Entity\Activity:
             id: true
             generator:
                 strategy: AUTO
-    manyToMany:
-        party:
-            targetEntity: Party
-            inversedBy: listActivities
-            joinTable:
-                name: party_activity
-                joinColumns:
-                    party_id:
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    activity_id:
-                        referencedColumnName: id
 
+
+    manyToMany:
         listContributions:
             targetEntity: OrgaperoContributionsBundle\Entity\Contribution
             inversedBy: activity
@@ -35,5 +25,8 @@ OrgaperoActivitiesBundle\Entity\Activity:
     manyToOne:
         typeOfActivity:
             targetEntity: OrgaperoActivitiesBundle\Entity\TypeOfActivity
+        party:
+            targetEntity: Party
+            inversedBy: listActivities
 
     lifecycleCallbacks: {  }

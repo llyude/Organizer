@@ -16,10 +16,11 @@ OrgaperoActivitiesBundle\Entity\Party:
             type: datetime
         location:
             type: text
-    manyToMany:
+    oneToMany:
         listActivities:
             targetEntity: Activity
             mappedBy: party
+    manyToMany:
         listParticipants:
             targetEntity: OrgaperoUserBundle\Entity\User
             mappedBy: invitations

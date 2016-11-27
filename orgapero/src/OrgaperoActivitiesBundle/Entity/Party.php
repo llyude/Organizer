@@ -46,10 +46,14 @@ class Party
     private $listParticipants;
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection Activity
      */
     private $listActivities;
 
+    /**
+     * @var ArrayCollection
+     */
+    private $lisActivitiesTemp;
     /**
      * Party constructor.
      * @param ArrayCollection $listParticipants
@@ -58,6 +62,8 @@ class Party
     public function __construct()
     {
         $this->listParticipants = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->listActivities = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->listActivitiesTemp = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -134,7 +140,7 @@ class Party
 
     /**
      * Get location
-     *
+     *type_of_activity
      * @return string
      */
     public function getLocation()
@@ -191,6 +197,24 @@ class Party
     }
 
     /**
+     * @return ArrayCollection
+     */
+    public function getLisActivitiesTemp()
+    {
+        return $this->lisActivitiesTemp;
+    }
+
+    /**
+     * @param ArrayCollection $lisActivitiesTemp
+     */
+    public function setLisActivitiesTemp($lisActivitiesTemp)
+    {
+        $this->lisActivitiesTemp = $lisActivitiesTemp;
+    }
+
+
+
+    /**
      * @return string
      */
     public function getTime()
@@ -207,9 +231,13 @@ class Party
     }
 
 
-    public function addActivities(TypeOfActivity $typeOfActivity)
+    public function addActivities(Activity $activity)
     {
-
+        if (!$this->listActivities->contains($activity)) {
+            $this->listActivities->add($activity);
+            $activity->setParty($this);
+        }
+        return $this;
     }
 
     public function addParticipants(ArrayCollection $users)
