@@ -51,10 +51,6 @@ class Party
     private $listActivities;
 
     /**
-     * @var ArrayCollection
-     */
-    private $lisActivitiesTemp;
-    /**
      * Party constructor.
      * @param ArrayCollection $listParticipants
      * @param ArrayCollection $listActivities
@@ -196,21 +192,6 @@ class Party
         $this->listActivities = $listActivities;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getLisActivitiesTemp()
-    {
-        return $this->lisActivitiesTemp;
-    }
-
-    /**
-     * @param ArrayCollection $lisActivitiesTemp
-     */
-    public function setLisActivitiesTemp($lisActivitiesTemp)
-    {
-        $this->lisActivitiesTemp = $lisActivitiesTemp;
-    }
 
 
 

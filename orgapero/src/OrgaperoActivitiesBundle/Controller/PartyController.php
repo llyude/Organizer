@@ -3,9 +3,8 @@
 namespace OrgaperoActivitiesBundle\Controller;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use OrgaperoActivitiesBundle\Entity\Activity;
+use OrgaperoActivitiesBundle\Entity\AbstractActivity;
 use OrgaperoActivitiesBundle\Entity\Party;
-use OrgaperoActivitiesBundle\Form\InviteFriendsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use OrgaperoActivitiesBundle\Form\PartyType;
@@ -29,13 +28,13 @@ class PartyController extends Controller
             $date = \DateTime::createFromFormat('d F, Y H:i', $datetime);
             $party->setDate($date);
             $users = $partyForm->get('listParticipants')->getData();
-            $listActivities = $partyForm->get('listActivitiesTemp')->getData();
+            $listActivities = $partyForm->get('listActivities')->getData();
 
-            foreach ($listActivities->toArray() as $activity){
-                $activity = new Activity($activity, $party);
-                $party->addActivities($activity);
-                dump($activity);
-            }
+//            foreach ($listActivities->toArray() as $activity){
+//                $activity = new Activity($activity, $party);
+//                $party->addActivities($activity);
+//                dump($activity);
+//            }
             dump($party);
 
             $party->addParticipants($users);

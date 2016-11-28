@@ -1,5 +1,12 @@
 OrgaperoActivitiesBundle\Entity\Activity:
     type: entity
+    inheritanceType: SINGLE_TABLE
+    discriminatorColumn:
+        name: discr
+        type: string
+    discriminatorMap:
+        activity: Activity
+        cinema: Cinema
     table: null
     repositoryClass: OrgaperoActivitiesBundle\Repository\ActivityRepository
     id:
@@ -8,8 +15,6 @@ OrgaperoActivitiesBundle\Entity\Activity:
             id: true
             generator:
                 strategy: AUTO
-
-
     manyToMany:
         listContributions:
             targetEntity: OrgaperoContributionsBundle\Entity\Contribution
@@ -23,10 +28,9 @@ OrgaperoActivitiesBundle\Entity\Activity:
                     activity_id:
                         referencedColumnName: id
     manyToOne:
-        typeOfActivity:
-            targetEntity: OrgaperoActivitiesBundle\Entity\TypeOfActivity
         party:
             targetEntity: Party
             inversedBy: listActivities
-
     lifecycleCallbacks: {  }
+
+

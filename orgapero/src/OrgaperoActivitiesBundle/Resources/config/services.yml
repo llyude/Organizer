@@ -1,4 +1,6 @@
 services:
-#    orgapero_activities.example:
-#        class: OrgaperoActivitiesBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    party.type:
+        class: OrgaperoActivitiesBundle\Form\PartyType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }

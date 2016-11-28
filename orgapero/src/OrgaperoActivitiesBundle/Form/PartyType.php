@@ -2,12 +2,11 @@
 
 namespace OrgaperoActivitiesBundle\Form;
 
-use OrgaperoActivitiesBundle\Repository\TypeOfActivityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
+use OrgaperoActivitiesBundle\Entity\Activity;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -16,6 +15,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PartyType extends AbstractType
 {
+    /**
+     * @var EntityManager
+     */
+    private $em;
+
+    /**
+     * PartyType constructor.
+     */
+    public function __construct(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
+
     /**
      * {@inheritdoc}
      */
@@ -26,25 +39,21 @@ class PartyType extends AbstractType
             ->add('time', TextType::class, array('attr' => array('placeholder' => 'ex: 20:00')))
             ->add('date', TextType::class, array('attr' => array('class' => 'partyDatepicker')))
             ->add('location', TextType::class)
-            ->add('listActivities', CollectionType::class, array(
-                'entry_type' => EntityType::class,
-                'entry_options' => function(){
-                },
-                'multiple'
+            ->add('listActivitiesTemp', EntityType::class, array(
+                'class' => 'OrgaperoActivitiesBundle:TypeOfActivity',
+                'choice_label' => 'name',
+                'attr' => array('class', 'input-field'),
+                'multiple' => true,
+                'mapped' => false
             ))
-//            for($i = 1; $i <= $this->course->getHolesNumber(); $i++) {
-//                $hole = new Hole();
-//                $hole->setCourse($this->course);
-//                $hole->setNumber($i);
-//                $builder->get('holes')->add('hole_'.$i, new HoleType($hole));
-//            }
-            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-                $form = $event->getForm();
-                $data = $event->getData();
-
-                $activities = $data->getLi();
-
-            })
+            ->add('listActivities', EntityType::class, array(
+                'class' => 'OrgaperoActivitiesBundle\Entity\Activity',
+                'choice_label' => 'typeofactivity',
+                'attr' => array('class', 'input-field'),
+                'multiple' => true,
+                'required'    => false,
+            ))
+            ->addEventListener(FormEvents::PRE_SUBMIT, array($this, 'onPreSubmitData'))
             ->add('listParticipants', EntityType::class, array(
                 'class' => 'OrgaperoUserBundle:User',
                 'choice_label' => 'username',
@@ -70,5 +79,25 @@ class PartyType extends AbstractType
         return 'orgaperoactivitiesbundle_party';
     }
 
+    public function onPreSubmitData(FormEvent $event)
+    {
+        $party = $event->getData();
+        if (!$party) {
+            return;
+        }
+        $typeOfActivityRepo = $this->em->getRepository('OrgaperoActivitiesBundle:TypeOfActivity');
+        $listTypeOfActivity = $typeOfActivityRepo->findBy(array('id' => $party['listActivitiesTemp']));
+        $activity = new ArrayCollection();
+
+        if (!empty($listTypeOfActivity)) {
+            foreach ($listTypeOfActivity as $typeOfActivity) {
+                $activity->add(Activity::createActivity($typeOfActivity)) ;
+            }
+            $event->setData($activity);
+        } else {
+
+        }
+
+    }
 
 }

@@ -1,43 +1,46 @@
 <?php
 
 namespace OrgaperoActivitiesBundle\Entity;
+
+use Foo\Bar\A;
 use OrgaperoContributionsBundle\Entity\Contribution;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Activity
  */
-class Activity
+abstract class Activity
 {
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var Party
      */
-    private $party;
+    protected $party;
 
     /**
      * @var TypeOfActivity
      */
-    private $typeOfActivity;
+    protected $typeOfActivity;
 
     /**
      * @var Contribution
      */
-    private $listContributions;
+    protected $listContributions;
 
     /**
-     * Activity constructor.
-     * @param TypeOfActivity $typeOfActivity
-     * @param Party $party
+     * @var DateTime
      */
-    public function __construct(TypeOfActivity $typeOfActivity)
-    {
-        $this->typeOfActivity = $typeOfActivity;
-    }
+    protected $date;
 
+    public static function createActivity(TypeOfActivity $typeOfActivity)
+    {
+        // TODO vérifier que la class créée est bien une instanceof Activity
+        // sous typage
+    }
 
     /**
      * Get id
@@ -96,6 +99,16 @@ class Activity
     {
         $this->listContributions = $listContributions;
     }
-    
+
 }
 
+class Diner extends Activity
+{
+    protected static $name = 'Dîner';
+}
+
+
+class Bowling extends Activity
+{
+    protected static $name = "Bowling";
+}

@@ -18,7 +18,7 @@ OrgaperoActivitiesBundle\Entity\Party:
             type: text
     oneToMany:
         listActivities:
-            targetEntity: Activity
+            targetEntity: OrgaperoActivitiesBundle\Entity\Activity
             mappedBy: party
     manyToMany:
         listParticipants:

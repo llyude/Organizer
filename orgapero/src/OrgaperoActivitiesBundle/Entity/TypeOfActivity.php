@@ -93,6 +93,7 @@ class TypeOfActivity
     {
         $this->children = $children;
     }
-    
+
 }
+
 
