@@ -19,11 +19,11 @@
                             <div class="secondary-content">
                                 <a href="{{ path('orgapero_user_edit_profile') }}" title="Edit my informations"
                                    class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">mode_edit</i></a>
-                              <a href="{{ path('orgapero_user_change_password') }}" title="Change my password"
-                                 class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">mode_edit</i></a>
+                                <a href="{{ path('orgapero_user_change_password') }}" title="Change my password"
+                                   class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">mode_edit</i></a>
                                 <a href="#!" title="Delete my account"
                                    class="btn-floating btn-large waves-effect waves-light red"><i
-                                            class="material-icons">delete_forever</i></a>
+                                        class="material-icons">delete_forever</i></a>
                             </div>
                         </li>
                     </ul>
@@ -37,7 +37,7 @@
                             <div class="secondary-content">
                                 <a href="{{ path('orgapero_user_search_friend') }}" title="add a new friend"
                                    class="btn-floating btn-large waves-effect waves-light white"><i
-                                            class="large material-icons secondary-text-color">person_add</i></a>
+                                        class="large material-icons secondary-text-color">person_add</i></a>
                             </div>
                         </li>
                         {% if app.user.friendsWithMe is not empty %}
@@ -45,9 +45,10 @@
                                 <li class="collection-item avatar custom-avatar">
                                     <i class="material-icons circle">face</i>
                                     <span class="title">{{ friend.name }}</span>
-                                    <a href="{{ path('orgapero_user_delete_friend', {'id': friend.id }) }}" title="Delete my friend"
+                                    <a href="{{ path('orgapero_user_delete_friend', {'id': friend.id }) }}"
+                                       title="Delete my friend"
                                        class="secondary-content btn-floating btn-large waves-effect waves-light "><i
-                                                class="material-icons">delete_forever</i></a>
+                                            class="material-icons">delete_forever</i></a>
                                 </li>
                             {% endfor %}
                         {% else %}
@@ -57,6 +58,22 @@
                         {% endif %}
                     </ul>
                 </div>
+            </div>
+            <div class="row">
+                {% for i in 0..11 %}
+                <div class="col l4 m6 s12">
+                    <div class="card blue-grey darken-1">
+                        <div class="card-content white-text">
+                            <span class="card-title">Event Title</span>
+                            <p>Date: </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">This is a link</a>
+                            <a href="#">This is a link</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
